@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTX - إدارة الحسابات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+        }
+        .form-container {
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.7);
+        }
+        .input-icon {
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .budget-option {
+            transition: all 0.3s ease;
+        }
+        .budget-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .budget-option input:checked + label {
+            border-color: #8b5cf6;
+            background-color: rgba(139, 92, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen text-white">
+    <div class="container mx-auto px-4 py-12 flex flex-col items-center justify-center min-h-screen">
+        <!-- Header Section -->
+        <header class="text-center mb-10 max-w-2xl">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-primary-400">سجّل الآن في خدمة إدارة حسابات QTX</h1>
+            <p class="text-lg text-gray-300">نقدّم لك إدارة احترافية لحسابك دون أي مضاعفة غير مرغوبة – فقط نتائج مضمونة.</p>
+        </header>
+
+        <!-- Form Section -->
+        <div class="form-container w-full max-w-md p-8 rounded-xl border border-primary-800 shadow-lg">
+            <form id="registrationForm" class="space-y-6">
+                <!-- Budget Selection -->
+                <div>
+                    <label class="block text-sm font-medium mb-3 text-gray-300">الميزانية المتوفرة ($)</label>
+                    <div class="grid gap-3">
+                        <div class="budget-option">
+                            <input type="radio" id="budget1" name="budget" value="20-30" class="hidden peer" required>
+                            <label for="budget1" class="flex items-center justify-between p-4 border border-primary-700 rounded-lg cursor-pointer bg-primary-900/50 hover:bg-primary-900/70">
+                                <div class="flex items-center">
+                                    <i class="fas fa-wallet text-primary-400 text-xl mr-3"></i>
+                                    <div>
+                                        <div class="font-medium">20$ - 30$</div>
+                                        <div class="text-xs text-gray-400">الحزمة الأساسية</div>
+                                    </div>
+                                </div>
+                                <div class="bg-primary-600 text-white text-xs px-2 py-1 rounded">الأكثر طلباً</div>
+                            </label>
+                        </div>
+                        
+                        <div class="budget-option">
+                            <input type="radio" id="budget2" name="budget" value="30-40" class="hidden peer">
+                            <label for="budget2" class="flex items-center justify-between p-4 border border-primary-700 rounded-lg cursor-pointer bg-primary-900/50 hover:bg-primary-900/70">
+                                <div class="flex items-center">
+                                    <i class="fas fa-coins text-primary-400 text-xl mr-3"></i>
+                                    <div>
+                                        <div class="font-medium">30$ - 40$</div>
+                                        <div class="text-xs text-gray-400">الحزمة المتوسطة</div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="budget-option">
+                            <input type="radio" id="budget3" name="budget" value="40+" class="hidden peer">
+                            <label for="budget3" class="flex items-center justify-between p-4 border border-primary-700 rounded-lg cursor-pointer bg-primary-900/50 hover:bg-primary-900/70">
+                                <div class="flex items-center">
+                                    <i class="fas fa-gem text-primary-400 text-xl mr-3"></i>
+                                    <div>
+                                        <div class="font-medium">40$+</div>
+                                        <div class="text-xs text-gray-400">الحزمة المميزة</div>
+                                    </div>
+                                </div>
+                                <div class="bg-yellow-500 text-white text-xs px-2 py-1 rounded">مميز</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Username Field -->
+                <div class="relative">
+                    <label for="username" class="block text-sm font-medium mb-2 text-gray-300">اسم المستخدم</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-primary-400">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <input type="text" id="username" name="username" class="bg-primary-900/50 border border-primary-700 text-white text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 pr-10" placeholder="اسم المستخدم في تيليجرام" required>
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="relative">
+                    <label for="email" class="block text-sm font-medium mb-2 text-gray-300">البريد الإلكتروني</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-primary-400">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <input type="email" id="email" name="email" class="bg-primary-900/50 border border-primary-700 text-white text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 pr-10" placeholder="example@email.com" required>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="w-full py-3 px-4 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition duration-200 flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i>
+                    إرسال الطلب
+                </button>
+                
+                <!-- Loading Indicator -->
+                <div id="loading" class="hidden text-center py-3">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary-400"></div>
+                    <p class="mt-2 text-gray-300">جاري إرسال البيانات...</p>
+                </div>
+                
+                <!-- Success Message -->
+                <div id="successMessage" class="hidden p-4 mb-4 text-sm text-green-400 bg-green-900/30 rounded-lg border border-green-800">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    تم إرسال طلبك بنجاح! سنتواصل معك قريباً.
+                </div>
+                
+                <!-- Error Message -->
+                <div id="errorMessage" class="hidden p-4 mb-4 text-sm text-red-400 bg-red-900/30 rounded-lg border border-red-800">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <span id="errorText">حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.</span>
+                </div>
+            </form>
+
+            <!-- Important Notice -->
+            <div class="mt-6 p-4 bg-primary-900/30 rounded-lg border border-primary-800">
+                <p class="text-xs text-gray-300 leading-relaxed">
+                    <i class="fas fa-info-circle text-primary-400 mr-1"></i>
+                    سيتم التواصل معك عبر تيليجرام أو البريد الإلكتروني لتأكيد الاشتراك. وعند وصول دورك، ستتلقى رسالة ثانية تحتوي على تفاصيل بدء إدارة الحساب.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-sm text-gray-400">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://t.me/QTXSupport" target="_blank" class="hover:text-primary-400 transition duration-200">
+                    <i class="fab fa-telegram text-xl"></i>
+                </a>
+                <a href="https://wa.me/1234567890" target="_blank" class="hover:text-primary-400 transition duration-200">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            <p>© QTX Management 2025. جميع الحقوق محفوظة.</p>
+            <p class="mt-1 text-xs opacity-70">عدد الزيارات اليوم: <span id="visitCount">0</span></p>
+        </footer>
+    </div>
+
+    <script>
+        // Telegram Bot Token and Admin IDs
+        const BOT_TOKEN = '7731966051:AAGzREnNJsZwtYYadMRvXfJwekMp1RxFSo4';
+        const ADMIN_IDS = [1441094731, 8193059090];
+        
+        // Visit counter
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize visit counter
+            updateVisitCounter();
+            
+            // Form submission handler
+            const form = document.getElementById('registrationForm');
+            form.addEventListener('submit', handleFormSubmit);
+        });
+        
+        // Function to update visit counter
+        function updateVisitCounter() {
+            const today = new Date().toISOString().split('T')[0];
+            let visits = JSON.parse(localStorage.getItem('siteVisits')) || {};
+            
+            // Initialize today's count if not exists
+            if (!visits[today]) {
+                visits[today] = 0;
+            }
+            
+            // Increment visit count
+            visits[today]++;
+            localStorage.setItem('siteVisits', JSON.stringify(visits));
+            
+            // Update display
+            document.getElementById('visitCount').textContent = visits[today];
+            
+            // Send daily report to admins (once per day)
+            const lastReportDate = localStorage.getItem('lastReportDate');
+            if (lastReportDate !== today) {
+                sendDailyReport(visits[today]);
+                localStorage.setItem('lastReportDate', today);
+            }
+        }
+        
+        // Function to send daily report to admins
+        function sendDailyReport(visitCount) {
+            const message = `📊 تقرير الزيارات اليومية:
+📅 التاريخ: ${new Date().toLocaleDateString('ar-EG')}
+👥 عدد الزيارات: ${visitCount}
+            
+🔄 تم تحديث الإحصاءات تلقائياً.`;
+            
+            ADMIN_IDS.forEach(adminId => {
+                sendTelegramMessage(adminId, message);
+            });
+        }
+        
+        // Function to handle form submission
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            // Show loading, hide other messages
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            document.getElementById('submitBtn').disabled = true;
+            
+            try {
+                const formData = new FormData(e.target);
+                const username = formData.get('username');
+                const email = formData.get('email');
+                const budget = formData.get('budget');
+                
+                // Get current date/time
+                const now = new Date();
+                const submissionDate = now.toLocaleString('ar-EG', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Map budget values to display names
+                const budgetDisplay = {
+                    '20-30': '20$ - 30$ (الحزمة الأساسية)',
+                    '30-40': '30$ - 40$ (الحزمة المتوسطة)',
+                    '40+': '40$+ (الحزمة المميزة)'
+                };
+                
+                // Prepare message for admins
+                let message = `🎉 اشتراك جديد في QTX:
+                
+📌 اسم المستخدم: @${username}
+📧 البريد الإلكتروني: ${email}
+💰 الميزانية المختارة: ${budgetDisplay[budget]}
+📅 تاريخ التسجيل: ${submissionDate}
+                
+✅ يرجى التواصل مع المستخدم لتأكيد الاشتراك.`;
+                
+                // Send to all admins
+                await Promise.all(ADMIN_IDS.map(adminId => 
+                    sendTelegramMessage(adminId, message)
+                ));
+                
+                // Show success message
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('successMessage').classList.remove('hidden');
+                form.reset();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorText').textContent = error.message || 'حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.';
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('errorMessage').classList.remove('hidden');
+            } finally {
+                document.getElementById('submitBtn').disabled = false;
+            }
+        }
+        
+        // Function to send text message via Telegram Bot
+        async function sendTelegramMessage(chatId, text) {
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: 'HTML'
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (!data.ok) {
+                throw new Error(data.description || 'Failed to send Telegram message');
+            }
+            
+            return data;
+        }
+    </script>
+</body>
+</html>
